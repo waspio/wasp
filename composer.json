@@ -1,0 +1,17 @@
+{
+    "name": "wasp/wasp",
+    "type": "library",
+    "description": "This class automatically grabs all errors created by your website and notifies you in realtime using the Wasp.io web service.",
+    "authors": [
+        {
+            "name": "Wasp.io",
+            "homepage": "https://wasp.io"
+        }
+    ],
+    "require": {
+        "php": ">=5.3"
+    }, 
+    "autoload": {
+        "files": ["wasp.class.php"]
+    }
+}
