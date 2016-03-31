@@ -3,9 +3,9 @@
  * wasp.class.php
  * wasp.io
  * @author Wasp.io
- * @version 2.2.1
+ * @version 2.2.2
  * @date 28-Sep-2013
- * @updated 10-Oct-2014
+ * @updated 31-Mar-2016
  * @package wasp.io
  *
  * Custom error handling and reporting
@@ -1062,7 +1062,7 @@ class Wasp {
     private function generate_logfile( $message )
     {
         //Log the errors to a file as necessary
-        if( ( self::$settings['generate_log'] === true ) && 
+        if( ( !empty( self::$settings['generate_log'] ) ) && 
             is_dir( self::$settings['generate_log'] ) && 
             is_writable( self::$settings['generate_log'] ) 
         )
