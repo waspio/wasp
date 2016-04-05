@@ -3,9 +3,9 @@
  * wasp.class.php
  * wasp.io
  * @author Wasp.io
- * @version 2.2.2
+ * @version 2.2.3
  * @date 28-Sep-2013
- * @updated 31-Mar-2016
+ * @updated 04-Apr-2016
  * @package wasp.io
  *
  * Custom error handling and reporting
@@ -702,7 +702,9 @@ class Wasp {
             //Echo the compiled errors
             foreach( self::$display_errors as $e )
             {
-                echo htmlentities( $e ) . '<br />';
+                echo '<pre>';
+                print_r( $e );
+                echo '</pre>';
             }
             //Add the error post-wrapper
             if( isset( self::$settings['close'] ) )
@@ -1016,18 +1018,17 @@ class Wasp {
          */
         if( isset( self::$settings['display'] ) && self::$settings['display'] === true )
         {   
-            //Loop and condense arrays as needed
-            if( is_array( $error['message'] ) && !empty( $error['message'] ) )
+            $copy = $error;
+            if( isset( $copy['surrounding_code'] ) )
             {
-                foreach( $error['message'] as &$message )
-                {
-                    self::$display_errors[] = $message;
-                }
+                unset( $copy['surrounding_code'] );
             }
-            elseif( !empty( $error['message'] ) )
+            if( isset( $copy['context'] ) )
             {
-                self::$display_errors[] = $error['message'];
+                unset( $copy['context'] );
             }
+            self::$display_errors[] = $copy;
+            unset( $copy );
         }
         
         //If the error IS fatal, send everything to wasp right away
