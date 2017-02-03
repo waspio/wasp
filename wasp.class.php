@@ -3,9 +3,9 @@
  * wasp.class.php
  * wasp.io
  * @author Wasp.io
- * @version 2.2.3
+ * @version 2.2.4
  * @date 28-Sep-2013
- * @updated 04-Apr-2016
+ * @updated 02-Feb-2017
  * @package wasp.io
  *
  * Custom error handling and reporting
@@ -83,7 +83,7 @@ class Wasp {
     static $user_data = array();
     private $timeout = 2;
     private $ip_address = '';
-    private $wasp_version = '2.2.1';
+    private $wasp_version = '2.2.4';
     private $notification_uri = 'https://wasp.io/requests/datastore/v3/';
     private $php_version = \PHP_VERSION;
     private $browser = array();
@@ -768,10 +768,10 @@ class Wasp {
      * Custom exception handler
      * Makes subsequent calls to log_custom_error
      * @access public
-     * @param Exception $e
+     * @param Exception|Throwable $e
      * @return none
      */
-    public function exception_handler( Exception $e )
+    public function exception_handler( $e )
     {
         $trace_path = $this->clean_tracepath( is_object( $e ) ? $e : debug_backtrace() );
         
